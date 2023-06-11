@@ -1,0 +1,50 @@
+{
+  "name": "nest-codes-generate",
+  "version": "1.0.2",
+  "description": "自定义扩展@nestjs/cli的功能包,可以直接输入表名生成对应的实体类、控制器、服务层等代码",
+  "main": "/bin/nest-codes-generate",
+  "bin": {
+    "nest-code-generate": "bin/nest-codes-generate",
+    "v": "bin/nest-codes-generate",
+    "code-gen": "bin/nest-codes-generate"
+  },
+  "scripts": {
+    "build": "tsc",
+    "serve": "tsc -w"
+  },
+  "keywords": [
+    "nest",
+    "mysql",
+    "code",
+    "generate",
+    "code-generate",
+    "node",
+    "nestjs/cli"
+  ],
+  "homepage": "https://github.com/zyz199/nest-codes-generate",
+  "author": "zhangyz652@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "ali-rds-async": "^0.0.2",
+    "commander": "^8.1.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.1.2",
+    "yaml": "^1.10.2"
+  },
+  "files": [
+    "lib/**/*",
+    "bin/nest-template-generate",
+    "template/**/*"
+  ],
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/ejs": "^3.1.0",
+    "@types/fs-extra": "^9.0.12",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.16.0",
+    "@types/yaml": "^1.9.7"
+  }
+}

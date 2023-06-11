@@ -1,0 +1,34 @@
+import { Injectable } from '@nestjs/common';
+import { <%= table.table_uppercase_name %>Entity } from './../../entities/<%= table.table_name %>.entity';
+<% if (is_full) { %>
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+<% } %>
+
+@Injectable()
+export class <%= table.table_uppercase_name %>Service {
+  <% if (is_full) { %>
+  @InjectRepository(<%= table.table_uppercase_name %>Entity)
+  private readonly <%= table.table_name %>Repository: Repository<<%= table.table_uppercase_name %>Entity>;
+
+  async create<%= table.table_uppercase_name %>(data: <%= table.table_uppercase_name %>Entity): Promise<<%= table.table_uppercase_name %>Entity> {
+    return await this.<%= table.table_name %>Repository.save(data)
+  }
+
+  async delete<%= table.table_uppercase_name %>ById(id: number): Promise<DeleteResult> {
+    return await this.<%= table.table_name %>Repository.softDelete(id)
+  }
+
+  async update<%= table.table_uppercase_name %>ById(id: number, data: <%= table.table_uppercase_name %>Entity): Promise<UpdateResult> {
+    return await this.<%= table.table_name %>Repository.update(id, data)
+  }
+
+  async find<%= table.table_uppercase_name %>List(): Promise<<%= table.table_uppercase_name %>Entity[]> {
+    return await this.<%= table.table_name %>Repository.find()
+  }
+
+  async find<%= table.table_uppercase_name %>ById(id: number): Promise<<%= table.table_uppercase_name %>Entity> {
+    return await this.<%= table.table_name %>Repository.findOne(id)
+  }
+  <% } %>
+}

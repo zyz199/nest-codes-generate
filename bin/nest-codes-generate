@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+/*
+    v account app表示对应数据库的account表, 最后挂载到app模块上, 如果多表就用,分开
+    options: 
+      单独生成实体类
+      生成实体类和空的控制器和服务层
+      生成实体类和带有curd的接口
+
+    prefix? <table_name> module_name [options]
+
+    帮助指令 --help
+    nest-codes-generate --help
+
+    table_name 数据表名称, 可以有多个用,分割
+    module_name 跟模块名称, 模块只能选择一个 
+    options: entity(实体)、tier(层), curd(接口)
+
+    <commands>
+    v --help
+    v table_name*n module --entity
+    v table_name*n module --tier
+    v table_name*n module --curd
+  */
+const program = require("commander");
+const { Parse } = require("../lib/index");
+
+program
+  .version(`nest-codes-generate@${require("../package.json").version}`)
+  .usage(
+    "<table_name2,table_name2...> [dir]"
+  );
+
+program
+  .argument("<table-name>", "Name of the data table(数据表名称)")
+  .argument('[dir]', 'The name of the folder to mount, "src" by default(要挂载的文件夹名称, 默认src)')
+  .action((tableName, dir) => new Parse(tableName, dir));
+
+program.parse(process.argv);
+
